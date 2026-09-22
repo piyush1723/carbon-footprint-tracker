@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carbon Footprint Tracker</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🌍 Carbon Footprint Tracker</h1>
+    <p class="tagline">Turn daily choices into a visible footprint.</p>
+  </header>
+
+  <main>
+    <!-- Weekly target + progress -->
+    <section class="card" id="target-section">
+      <h2>Weekly Target</h2>
+      <div id="target-display">
+        <p id="no-target-msg">No target set yet.</p>
+      </div>
+      <form id="target-form">
+        <label for="target-input">Set weekly CO₂ target (kg)</label>
+        <input type="number" id="target-input" min="1" step="0.1" placeholder="e.g. 50" required />
+        <button type="submit">Save Target</button>
+      </form>
+      <div id="week-progress-bar" class="progress-bar" hidden>
+        <div class="day-segments" id="day-segments"></div>
+      </div>
+      <p id="nudge-banner" class="nudge-banner" hidden></p>
+    </section>
+
+    <!-- Log activity -->
+    <section class="card" id="log-section">
+      <h2>Log an Activity</h2>
+      <form id="activity-form">
+        <label for="activity-type">Activity type</label>
+        <select id="activity-type" required></select>
+
+        <label for="activity-quantity">
+          Quantity (<span id="unit-label">km</span>)
+        </label>
+        <input type="number" id="activity-quantity" min="0" step="0.01" required />
+
+        <label for="activity-date">Date</label>
+        <input type="date" id="activity-date" />
+
+        <button type="submit">Log Activity</button>
+      </form>
+      <p id="log-status" class="status-msg"></p>
+
+      <!-- DP2: confirm modal for absurd input -->
+      <div id="confirm-modal" class="modal" hidden>
+        <div class="modal-box">
+          <p id="confirm-message"></p>
+          <div class="modal-actions">
+            <button id="confirm-yes">Yes, that's correct</button>
+            <button id="confirm-no" class="secondary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="card" id="dashboard-section">
+      <h2>Dashboard</h2>
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-value" id="week-total">0</span>
+          <span class="stat-label">kg CO₂ this week</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="alltime-total">0</span>
+          <span class="stat-label">kg CO₂ all time</span>
+        </div>
+      </div>
+      <table id="breakdown-table">
+        <thead><tr><th>Category</th><th>kg CO₂ (this week)</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- History & filter -->
+    <section class="card" id="history-section">
+      <h2>History</h2>
+      <div class="filters">
+        <label for="filter-type">Type</label>
+        <select id="filter-type">
+          <option value="">All</option>
+        </select>
+        <label for="filter-from">From</label>
+        <input type="date" id="filter-from" />
+        <label for="filter-to">To</label>
+        <input type="date" id="filter-to" />
+        <button id="apply-filters">Filter</button>
+        <button id="clear-filters" class="secondary">Clear</button>
+      </div>
+      <table id="history-table">
+        <thead><tr><th>Date</th><th>Type</th><th>Quantity</th><th>CO₂ (kg)</th><th>Flagged</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
