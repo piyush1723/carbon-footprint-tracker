@@ -12,7 +12,7 @@ No authentication or signup is required. All features are accessible directly fr
 
 ## Live Demo
 
-- **App URL:** `PASTE_YOUR_DEPLOYED_URL_HERE`
+- **App URL:** `https://carbon-footprint-tracker-hm3t.onrender.com/`
 - **Test Credentials:** Not applicable — no authentication is implemented.
 
 ---
